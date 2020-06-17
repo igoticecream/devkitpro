@@ -1,0 +1,38 @@
+# action name
+name: "devkitpro"
+
+# action author
+author: "Pedro Diaz <igoticecream@gmail.com>"
+
+# action description
+description: "Homebrew toolchains for Nintendo by devkitPro"
+
+# branding
+branding:
+  icon: "cloud"
+  color: "blue"
+
+# action input values
+inputs:
+  command:
+    description: "Command line to execute"
+    required: false
+    default: "make -j$(nproc --all)"
+  envfile:
+    description: "Path of an environment variable file to load. Relative to $GITHUB_WORKSPACE"
+    required: false
+    default: ""
+  path:
+    description: "Current directory. Relative to $GITHUB_WORKSPACE"
+    required: false
+    default: ""
+
+# action runner
+runs:
+  using: "docker"
+  image: "docker://igoticecream/devkitpro"
+  args:
+    - ${{ inputs.command }}
+    - ${{ inputs.envfile }}
+    - ${{ inputs.path }}
+  entrypoint: "action.sh"
