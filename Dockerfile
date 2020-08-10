@@ -30,9 +30,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     chmod +x /usr/bin/action.sh
 
-RUN wget https://github.com/devkitPro/pacman/releases/latest/download/devkitpro-pacman.deb && \
-    dpkg -i devkitpro-pacman.deb && \
-    rm devkitpro-pacman.deb && \
+RUN wget https://github.com/devkitPro/pacman/releases/latest/download/devkitpro-pacman.amd64.deb && \
+    dpkg -i devkitpro-pacman.amd64.deb && \
+    rm devkitpro-pacman.amd64.deb && \
     dkp-pacman --noconfirm -Scc
 
 RUN dkp-pacman --noconfirm -Syyu switch-dev && \
